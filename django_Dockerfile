@@ -1,0 +1,10 @@
+FROM python:3.9
+LABEL name="Django" description="This is a Django 2.2.16 images in python 3.9" version="2.2.16" maintainer="eli_hans@icloud.com"
+RUN apt-get update && apt-get -y upgrade
+RUN apt-get -y install vim
+RUN cd /opt && mkdir project
+WORKDIR /opt/project
+COPY . .
+RUN pip install -r django_requirements.txt
+EXPOSE 8000
+CMD python manage.py runserver 0:8000
